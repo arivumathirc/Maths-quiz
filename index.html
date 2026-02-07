@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12th Maths – 1 Mark Practice Quiz</title>
+
+<style>
+body {
+  font-family: Arial;
+  margin: 20px;
+  background-color: #f7f7f7;
+}
+h1 { text-align: center; }
+
+.question {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.correct { background: #4CAF50; color: white; }
+.wrong   { background: #f44336; color: white; }
+
+#score {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<h1>12th Maths – 1 Mark Practice Quiz</h1>
+
+<div id="quiz"></div>
+<div id="score"></div>
+
+<script>
+const questions = [
+  { question: "1. The derivative of sin x is?", options: ["cos x","-cos x","sin x","-sin x"], answer: "cos x" },
+  { question: "2. ∫ 1/x dx equals?", options: ["ln x","x","1/x","e^x"], answer: "ln x" },
+  { question: "3. The derivative of e^x is?", options: ["x e^(x-1)","e^x","x e^x","ln x"], answer: "e^x" },
+  { question: "4. If f(x)=x^2, then f’(x) equals?", options: ["2x","x","x^2","1/x"], answer: "2x" },
+  { question: "5. ∫cos x dx equals?", options: ["sin x","-sin x","cos x","-cos x"], answer: "sin x" },
+
+  { question: "6. ∫sec^2 x dx equals?", options: ["tan x","cot x","sec x","cos x"], answer: "tan x" },
+  { question: "7. The derivative of ln x is?", options: ["1/x","ln x","x","e^x"], answer: "1/x" },
+  { question: "8. ∫0 to 1 x dx equals?", options: ["1/2","1","0","2"], answer: "1/2" },
+
+  { question: "9. If A=[[1,2],[3,4]], det(A) is?", options: ["-2","-1","2","1"], answer: "-2" },
+  { question: "10. The inverse of matrix I is?", options: ["I","0","-I","2I"], answer:"I" },
+
+  { question: "11. If det A = 0, matrix A is?", options: ["Singular","Non-singular","Diagonal","Unit"], answer: "Singular" },
+  { question: "12. Determinant of identity matrix is?", options: ["1","0","2","-1"], answer: "1" },
+
+  { question: "13. sin^2 x + cos^2 x = ?", options: ["1","0","sin x","cos x"], answer: "1" },
+  { question: "14. sin 30° is?", options: ["1/2","√3/2","1","0"], answer: "1/2" },
+  { question: "15. tan 45° is?", options: ["1","√3","0","-1"], answer: "1" },
+
+  { question: "16. Probability head in coin toss?", options: ["1/2","1/4","1","0"], answer: "1/2" },
+  { question: "17. Mean of 2,4,6,8,10?", options: ["6","5","4","7"], answer: "6" },
+  { question: "18. Variance of 1,1,1,1?", options: ["0","1","2","4"], answer: "0" },
+
+  { question: "19. Dot product of perpendicular vectors?", options: ["0","1","-1","Undefined"], answer: "0" },
+  { question: "20. Magnitude of 3i+4j?", options: ["5","7","25","1"], answer: "5" }
+];
+
+let score = 0;
+const quizDiv = document.getElementById('quiz');
+
+questions.forEach(q => {
+  const div = document.createElement('div');
+  div.className = "question";
+
+  div.innerHTML = `<p>${q.question}</p>`;
+
+  q.options.forEach(option => {
+    const btn = document.createElement('button');
+    btn.textContent = option;
+
+    btn.onclick = () => {
+      if(option === q.answer){
+        btn.classList.add('correct');
+        score++;
+      } else {
+        btn.classList.add('wrong');
+      }
+
+      div.querySelectorAll('button').forEach(b => b.disabled = true);
+
+      document.getElementById('score').innerText =
+        "Score: " + score + " / " + questions.length;
+    };
+
+    div.appendChild(btn);
+  });
+
+  quizDiv.appendChild(div);
+});
+</script>
+
+</body>
+</html>
